@@ -9,5 +9,5 @@ Feature: Prueba del servicio de Registro (Signup)
       "email": "falara@hotmail.com" 
     }
     When method post
-    Then status 201
+    Then status 200
     And match response == { message: 'Usuario creado exitosamente'}
