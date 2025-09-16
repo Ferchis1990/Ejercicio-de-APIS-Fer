@@ -1,2 +1,13 @@
 # Ejercicio-de-APIS-Fer
 Prueba de servicios
+Feature: Prueba del servicio de Registro (Signup)
+  Scenario: Registro exitoso de un nuevo usuario
+    Given url 'https://tu-api.com/api/signup'
+    And request { 
+      "username": "Usuario1", 
+      "password": "Contraseña1", 
+      "email": "falara@hotmail.com" 
+    }
+    When method post
+    Then status 201
+    And match response == { message: 'Usuario creado exitosamente' }
