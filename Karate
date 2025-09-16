@@ -1,1 +1,6 @@
-karate-config.js
+function fn() {
+  var config = {
+    baseUrl: 'https://tu-api.com/api'
+  };
+  return config;
+}
