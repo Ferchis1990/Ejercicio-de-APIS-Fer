@@ -1,0 +1,14 @@
+CONCLUSIONES DEL EJERCICIO - Pruebas API Demoblaze
+
+1. La API de DemoBlaze responde con código 200 incluso en errores 
+   Se identifican los errores en el contenido del body 
+
+2. Para evitar conflictos en las pruebas de creación de usuarios, se utiliza un nombre aleatorio con UUID.
+
+3. Karate permite estructurar pruebas fácilmente, separar escenarios y validar tanto el código de estado como el cuerpo de la respuesta.
+
+4. El uso de Karate facilita el testing BDD  y permite generar reportes automáticos.
+
+5. En ambientes reales, lo ideal sería tener un endpoint de eliminación de usuarios para mantener el entorno limpio después de pruebas.
+
+6. Se comprobó que el sistema no valida correctamente los códigos de error HTTP (200 incluso en errores de login/signup), lo cual puede causar ambigüedades en los tests automatizados.
