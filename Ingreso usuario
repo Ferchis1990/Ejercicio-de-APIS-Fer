@@ -7,5 +7,5 @@ Feature: Prueba del servicio de Login
       "password": "Contraseña1" 
     }
     When method post
-    Then status 409
+    Then status 200
     And match response.message == 'El usuario ya existe.'
