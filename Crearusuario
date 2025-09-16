@@ -1,13 +1,36 @@
-# Ejercicio-de-APIS-Fer
-Prueba de servicios
-Feature: Prueba del servicio de Registro (Signup)
-  Scenario: Registro exitoso de un nuevo usuario
-    Given url 'https://tu-api.com/api/signup'
-    And request { 
-      "username": "Usuario1", 
-      "password": "Contraseña1", 
-      "email": "falara@hotmail.com" 
-    }
-    When method post
-    Then status 200
-    And match response == { message: 'Usuario creado exitosamente'}
+Feature: Pruebas de signup y login en demoblaze
+
+Background:
+  * def baseUrl = 'https://api.demoblaze.com'
+  * def randomId = java.util.UUID.randomUUID().toString().substring(0,8)
+  * def newUser = 'usuario_' + randomId
+  * def password = 'Password123'
+
+Scenario: Crear un nuevo usuario en signup
+  Given url baseUrl + '/signup'
+  And request { username: '#(newUser)', password: '#(password)' }
+  When method POST
+  Then status 200
+  And match response == { isOk: true }
+
+Scenario: Intentar crear un usuario ya existente
+  Given url baseUrl + '/signup'
+  And request { username: '#(newUser)', password: '#(password)' }
+  When method POST
+  Then status 200
+  And match response == { errorMessage: 'This user already exist.' }
+
+Scenario: Login con usuario y contraseña correctos
+  Given url baseUrl + '/login'
+  And request { username: '#(newUser)', password: '#(password)' }
+  When method POST
+  Then status 200
+  And match response.isOk == true
+  And match response.token != null
+
+Scenario: Login con usuario y contraseña incorrectos
+  Given url baseUrl + '/login'
+  And request { username: '#(newUser)', password: 'claveIncorrecta' }
+  When method POST
+  Then status 200
+  And match response.errorMessage == 'Wrong password.'
