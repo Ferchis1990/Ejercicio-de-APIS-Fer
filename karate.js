@@ -1,6 +1,6 @@
 function fn() {
   var config = {
-    baseUrl: 'https://github.com/Ferchis1990/Ejercicio-de-APIS-Fer'
+    baseUrl: 'https://api.demoblaze.com'
   };
   return config;
 }
